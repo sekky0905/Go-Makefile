@@ -44,7 +44,7 @@ deps:
 precommit :
 	# 静的解析
 	go list ./... | grep -v 'vendor' | xargs go vet
-	# go list で import path を表示する
+	# go lint
 	go list ./... | grep -v 'vendor' | xargs golint -set_exit_status
 	# go fmt
 	find . -name '*.go' | grep -v 'vendor' | xargs gofmt -l
