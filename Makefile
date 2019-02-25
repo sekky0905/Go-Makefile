@@ -32,12 +32,9 @@ run:
 .PHONY: deps
 deps:
 	$(GOGET) github.com/golang/dep/cmd/dep
-	$(GOGET) github.com/gin-gonic/gin
 	$(GOGET) golang.org/x/lint/golint
 	$(GOGET) golang.org/x/tools/cmd/goimports
 	$(GOGET) github.com/kisielk/errcheck
-	$(GOGET) gopkg.in/DATA-DOG/go-sqlmock.v1
-	$(GOGET) github.com/go-sql-driver/mysql
 	dep ensure
 
 .PHONY: precommit
