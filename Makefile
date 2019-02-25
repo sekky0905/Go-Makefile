@@ -43,10 +43,11 @@ deps:
 .PHONY: precommit
 precommit :
 	# 静的解析
-	go vet ./...
+	go list ./... | grep -v 'vendor' | xargs go vet
 	# go list で import path を表示する
-	# pipe を使用した後、 xargs でコマンドラインを作成し、xargs で作成したコマンドラインは、 go list の表示結果
-	go list ./... | xargs golint -set_exit_status
+	go list ./... | grep -v 'vendor' | xargs golint -set_exit_status
+	# go fmt
+	find . -name '*.go' | grep -v 'vendor' | xargs gofmt -l
 	# エラーハンドリングの確認
 	# test と　Close の部分を無視している
 	errcheck -ignoretests -ignore 'Close' ./...
